@@ -43,14 +43,7 @@ SPDLOG_INLINE rotating_file_sink<Mutex>::rotating_file_sink(
 template<typename Mutex>
 SPDLOG_INLINE filename_t rotating_file_sink<Mutex>::calc_filename(const filename_t &filename, std::size_t index)
 {
-    if (index == 0u)
-    {
-        return filename;
-    }
-
-    filename_t basename, ext;
-    std::tie(basename, ext) = details::file_helper::split_by_extension(filename);
-    return fmt::format(SPDLOG_FILENAME_T("{}.{}{}"), basename, ext, index);
+    return fmt::format(SPDLOG_FILENAME_T("{}{}"), filename, index);
 }
 
 template<typename Mutex>
